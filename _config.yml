@@ -11,9 +11,9 @@ paginate: 8
 paginate_path: "page:num"
 
 # presonal config
-title: Wtaps 's Blog
-description: Wtaps's Blog, powered by Jekyll...
-author: tony leung
+title: Jaden 's Blog
+description: Jaden's Blog, powered by Jekyll...
+author: Jaden Lian
 
 seo: 
   keyword: 
