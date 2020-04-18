@@ -17,8 +17,8 @@ baidusitemap:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://4ark.me
-root: /
+# url: https://4ark.me
+# root: /
 # permalink: :year/:month/:day/:title/
 #permalink: :urlname
 permalink: post/:abbrlink.html
@@ -99,5 +99,5 @@ theme: polarbear
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:gd4Ark/gd4Ark.github.io.git
+  repo: git@github.com:zachary-lian/zachary-lian.github.io.git
   branch: master
