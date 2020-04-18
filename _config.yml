@@ -1,5 +1,5 @@
 # markdown: redcarpet
-markdown: CommonMark 
+markdown: GFM 
 permalink: /:categories/:title.html
 lsi: false
 # pygments:
