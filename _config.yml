@@ -1,6 +1,6 @@
-markdown: redcarpet
+# markdown: redcarpet
+markdown: kramdown 
 permalink: /:categories/:title.html
-url: 
 lsi: false
 # pygments:
 rouge: true
