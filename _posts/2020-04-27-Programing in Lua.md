@@ -478,23 +478,25 @@ resume 运行在保护模式下，因此，如果协同程序内部存在错误�
 
 #### resume和yield的参数传递
 
-resume第一次调用的参数传递给目标函数，随后的参数都传到yield作为yield的返回值
+resume第一次调用的参数传递给目标函数，随后的参数都传到yield（前一次的导致协程阻塞的那个yield）作为yield的返回值
 
 yield的参数都传给resume作为resume的返回值，如果目标函数执行完了，目标函数的返回值也会传递给resume作为resume的返回值
 
 ```lua
-local co = coroutine.create(function(start)
-    for var = start, 4
-    do
-        print("val", var)
-        print("yield:", coroutine.yield(var))
-    end
-    return "finished"
+co = coroutine.create(function(x)
+    print("x:", x)
+    local y = coroutine.yield(555)
+    print("y:", y)
+    return 888
 end)
 
-print("resume:",coroutine.resume(co, 3))
-print("resume:",coroutine.resume(co, 101))
-print("resume:",coroutine.resume(co, 202))
+print(coroutine.resume(co, 666))
+print(coroutine.resume(co, 777))
+--- 输出为
+x:      666
+true    555
+y:      777
+true    888
 ```
 
 #### 生产者消费者问题
@@ -623,8 +625,7 @@ string.format("%q", o)
 
 ```lua
 -- 为matatable设置一个__metatable的域，即可保护这个metatable
-Set.mt.__metatable = "not your business"
-s1 = Set.new{}
+s1 = setmetatable({},{__metatable = "not your business"})
 print(getmetatable(s1)) --  not your business
 setmetatable(s1, {})   --   stdin:1: cannot change protected metatable
 ```
@@ -778,7 +779,9 @@ string.char(97)  -- a
 string.byte("abc",1)  -- 97  字符转数字
 string.format(fmt,...)
 
-string.find(s,"pattern",index)
+--查找字符串，init表示起始查找位置，plain=true时关闭模式匹配，按普通字串处理pattern
+string.find (s, pattern [, init [, plain]])
+
 --替换字符串，n表示最多替换几次(否则全部换掉)
 --放回值【替换后的字符串，替换了几次】
 string.gsub(s,"pattern","replace",n) 
